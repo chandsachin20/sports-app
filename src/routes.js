@@ -17,6 +17,7 @@ routes.get("/status", (req, res) => {
 
 //Event 
 //upload is a middleware to upload the file
+routes.get("/even/:eventId", EventController.getEventById );
 routes.post("/event", upload.single('thumbnail'), EventController.createEvent );
 
 

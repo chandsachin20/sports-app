@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 const EventSchema  = new mongoose.Schema({
     title: String,
     description: String,
@@ -10,7 +11,14 @@ const EventSchema  = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     }
-})
+},{
+        toJSON: {
+            virtuals: true
+        }
+    });
+
+
+EventSchema.virtual("thumbnail_url").get( () => `http://localhost:8000/files/${this.thumbnail}`)
 
 
 module.exports = mongoose.model("Event", EventSchema);
