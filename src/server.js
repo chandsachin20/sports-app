@@ -7,7 +7,7 @@ const app = express();
 
 const userController = require("./controllers/UserController");
 
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8001;
 
 app.use(cors());
 app.use(express.json());
@@ -15,7 +15,7 @@ app.use(express.json());
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
+ 
 
 try {
   mongoose.connect(process.env.MONGO_DB_CONNECTION, {

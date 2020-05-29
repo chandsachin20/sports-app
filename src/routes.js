@@ -7,7 +7,9 @@ const EventController = require('./controllers/EventController');
 const uploadConfig = require('./config/upload')
 const Dashboard  = require('./controllers/Dashboard')
 const LoginController = require('./controllers/LoginController')
-
+const RegistrationController = require('./controllers/RegistrationController');
+const ApprovalController = require('./controllers/ApprovalController');
+const RejectionController = require('./controllers/RejectionController');
 const routes = express.Router();
 const upload = multer(uploadConfig);
 
@@ -32,5 +34,14 @@ routes.delete("/event/:eventId", EventController.deleteEvent)
 //user
 routes.post("/user/register", userController.createUser);
 routes.get("/user/:userId", userController.getUserById);
+
+
+
+//registration routes
+routes.post('/register/:eventId', RegistrationController.Create);
+routes.get('/registration/:registrationId', RegistrationController.getRegistration)
+routes.get('/registration/:registrationId/approval', ApprovalController.approval);
+routes.get('/registration/:registrationId/rejection', RejectionController.reject);
+
 
 module.exports = routes;

@@ -32,20 +32,7 @@ module.exports = {
       });
     }
   },
- 
-
-  async sports(req, res) {
-    const { sport } = req.params;
-    const query = sport || {};
-    try {
-      const events = await Event.find(query);
-      if (events) {
-        return res.json(events);
-      }
-    } catch (error) {
-      return res.status(400).json({ message: "no sports available" });
-    }
-  },
+  
 
   async deleteEvent(req, res) {
     const { eventId } = req.params;
