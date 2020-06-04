@@ -16,22 +16,23 @@ module.exports = {
           .status(200)
           .json({ message: "user not found! Do you want to register" });
       }
-
-      if (user && (await bcrypt.compare(password, user.password))) {
+      
+     
+      if (user && await bcrypt.compare(password, user.password)) {
         const userResponse = {
-          _id_user: _id,
+          _id:user._id,
           email: user.email,
           firstName:user.firstName,
           lastName:user.lastName
-        };
+        }
         return res.json(userResponse);
       } else {
         return res
           .status(200)
-          .json({ messgae: "Email or Passeword does not match" });
+          .json({ message: "Email or Password does not match" })
       }
     } catch (error) {
-        throw new Error(`Error while authenticating a user${error}`);
+        throw new Error(`Error while authenticating a user${error}`)
     }
   },
 };

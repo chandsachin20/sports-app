@@ -9,11 +9,11 @@ module.exports = {
       const existenceUser = await User.findOne({ email });
 
       if (!existenceUser) {
-        const hashPassword = await bcrypt.hashPassword(password, 10);
+        const hashPassword = await bcrypt.hash(password, 10);
         const user = await User.create({
           firstName: firstName,
           lastName: lastName,
-          password: password,
+          password: hashPassword,
           email: email,
         });
 
