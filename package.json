@@ -1,6 +1,9 @@
 {
   "name": "sports-app",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.15.1"
+  },
   "description": "a full stack application for sports application",
   "main": "src/server.js",
   "scripts": {
