@@ -22,10 +22,10 @@ routes.get("/status", (req, res) => {
 //login controller
 routes.post("/login", LoginController.loginStore);
 //Event 
-routes.get("/event/:sports", Dashboard.sports);
-routes.get("/events", Dashboard.getEvents);
+routes.get("/dashboard/:sports", Dashboard.sports);
+routes.get("/dashboard", Dashboard.getEvents);
 routes.get("/event/:eventId", Dashboard.getEventById  );
-
+routes.get("/user/events", Dashboard.getEventsByUserId);
 
 //upload is a middleware to upload the file
 routes.post("/event", upload.single('thumbnail'), EventController.createEvent );
