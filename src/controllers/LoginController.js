@@ -1,5 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken')
+
 
 module.exports = {
   async loginStore(req, res) {
@@ -25,7 +27,15 @@ module.exports = {
           firstName:user.firstName,
           lastName:user.lastName
         }
-        return res.json(userResponse);
+        //token 
+        return jwt.sign({user: userResponse}, 'secret', (err, token) => {
+          return res.json({
+            user:token,
+            user_id:user._id
+          })
+        })
+
+       // return res.json(userResponse);
       } else {
         return res
           .status(200)

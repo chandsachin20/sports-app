@@ -1,6 +1,6 @@
 const express = require("express");
 const multer = require('multer');
-
+const verifyToken  = require('../src/config/verifyToken')
 
 const userController = require('./controllers/UserController');
 const EventController = require('./controllers/EventController');
@@ -22,14 +22,14 @@ routes.get("/status", (req, res) => {
 //login controller
 routes.post("/login", LoginController.loginStore);
 //Event 
-routes.get("/dashboard/:sports", Dashboard.sports);
-routes.get("/dashboard", Dashboard.getEvents);
-routes.get("/event/:eventId", Dashboard.getEventById  );
-routes.get("/user/events", Dashboard.getEventsByUserId);
+routes.get("/dashboard/:sports",verifyToken,  Dashboard.sports);
+routes.get("/dashboard",verifyToken, Dashboard.getEvents);
+routes.get("/event/:eventId",verifyToken, Dashboard.getEventById  );
+routes.get("/user/events",verifyToken, Dashboard.getEventsByUserId);
 
 //upload is a middleware to upload the file
-routes.post("/event", upload.single('thumbnail'), EventController.createEvent );
-routes.delete("/event/:eventId", EventController.deleteEvent)
+routes.post("/event", verifyToken, upload.single('thumbnail'), EventController.createEvent );
+routes.delete("/event/:eventId",verifyToken, EventController.deleteEvent)
 
 //user
 routes.post("/user/register", userController.createUser);
