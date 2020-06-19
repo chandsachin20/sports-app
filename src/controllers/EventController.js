@@ -1,5 +1,7 @@
 const Event = require("../models/Event");
 const User = require("../models/User");
+const jwt = require('../config/verifyToken')
+
 
 module.exports = {
   createEvent(req, res) {
