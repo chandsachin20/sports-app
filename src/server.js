@@ -10,10 +10,6 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server);
 
-
-
-const userController = require("./controllers/UserController");
-
 const PORT = process.env.PORT || 8001;
 
 
@@ -35,7 +31,7 @@ const connectedUsers = {};
 
 io.on("connection", (socket) => {
   const { user } = socket.handshake.query;
-  connectedUsers[users] = socket.id;
+  connectedUsers[user] = socket.id;
 });
 
 app.use((req, res, next) => {
