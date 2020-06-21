@@ -38,7 +38,7 @@ routes.get("/user/:userId", userController.getUserById);
 
 
 //registration routes
-routes.post('/register/:eventId', RegistrationController.Create);
+routes.post('/register/:eventId',verifyToken, RegistrationController.Create);
 routes.get('/registration/:registrationId', RegistrationController.getRegistration)
 routes.get('/registration/:registrationId/approval', ApprovalController.approval);
 routes.get('/registration/:registrationId/rejection', RejectionController.reject);
