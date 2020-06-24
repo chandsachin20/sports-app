@@ -2,6 +2,12 @@ const Registration = require("../models/Registration");
 
 module.exports = {
   async reject(req, res) {
+    jwt.verify(req.token, "secret", async (err, authData) => {
+      if (err) {
+        res.sendStatus(401);
+      } else {}
+    });
+    
     const { registrationId } = req.params;
 
     try {
